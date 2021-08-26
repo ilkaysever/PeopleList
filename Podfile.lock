@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.4.2)
+  - IBAnimatable (6.1.0)
+  - IHKeyboardAvoiding (4.7)
+  - Kingfisher (6.2.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - IBAnimatable
+  - IHKeyboardAvoiding
+  - Kingfisher
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IBAnimatable
+    - IHKeyboardAvoiding
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  IBAnimatable: 99dddd4c0625884a301ba3ecbc1615f8a390368e
+  IHKeyboardAvoiding: 4cae0880c3975feffa278495df894c5166e71ad0
+  Kingfisher: e71c6fac2aebb1262888cabc2cb13d313362a48f
+
+PODFILE CHECKSUM: a93775b0718ba45b6f1203cf28da968f8f352675
+
+COCOAPODS: 1.10.1
