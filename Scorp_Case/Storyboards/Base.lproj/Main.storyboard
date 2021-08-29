@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +17,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-fb-iiG">
+                                <rect key="frame" x="87.666666666666686" y="228.66666666666663" width="200" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad_emoji" translatesAutoresizingMaskIntoConstraints="NO" id="fGZ-sN-F8M">
+                                        <rect key="frame" x="40" y="40.000000000000028" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="E0E-CA-YdX"/>
+                                            <constraint firstAttribute="width" secondItem="fGZ-sN-F8M" secondAttribute="height" multiplier="1:1" id="u3s-bN-Lz7"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kimsecikler Yok!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MA-So-qVQ">
+                                        <rect key="frame" x="0.0" y="180.00000000000003" width="200" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="usJ-wB-6TV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99504548311233521" green="0.10351275521075155" blue="0.073848911873073242" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6MA-So-qVQ" secondAttribute="trailing" id="9rq-st-Sdh"/>
+                                    <constraint firstAttribute="width" constant="200" id="NWH-4C-4JJ"/>
+                                    <constraint firstItem="fGZ-sN-F8M" firstAttribute="centerX" secondItem="kEb-fb-iiG" secondAttribute="centerX" id="NY2-TJ-zTd"/>
+                                    <constraint firstItem="6MA-So-qVQ" firstAttribute="leading" secondItem="kEb-fb-iiG" secondAttribute="leading" id="OHv-OR-gap"/>
+                                    <constraint firstAttribute="bottom" secondItem="6MA-So-qVQ" secondAttribute="bottom" id="VxR-Aj-er4"/>
+                                    <constraint firstAttribute="width" secondItem="kEb-fb-iiG" secondAttribute="height" multiplier="1:1" id="cmq-rZ-bke"/>
+                                    <constraint firstItem="fGZ-sN-F8M" firstAttribute="centerY" secondItem="kEb-fb-iiG" secondAttribute="centerY" id="v4V-xL-mFu"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fob-Th-REr">
+                                <rect key="frame" x="16" y="718" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="VLi-NA-scJ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="refreshButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y8R-j5-pDF"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-b3-EYO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -26,20 +68,30 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="m6R-b3-EYO" secondAttribute="bottom" id="5wt-hF-4RB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m6R-b3-EYO" secondAttribute="trailing" id="FnP-7O-gOF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fob-Th-REr" secondAttribute="bottom" constant="16" id="Wjf-v2-5Xb"/>
+                            <constraint firstItem="Fob-Th-REr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="dcn-25-95j"/>
                             <constraint firstItem="m6R-b3-EYO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fee-wq-23T"/>
                             <constraint firstItem="m6R-b3-EYO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kIo-cS-4Qm"/>
+                            <constraint firstItem="kEb-fb-iiG" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.8" id="sWO-iE-txo"/>
+                            <constraint firstItem="kEb-fb-iiG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tkH-dN-xrd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fob-Th-REr" secondAttribute="trailing" constant="16" id="xMv-mG-Cna"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descLabel" destination="6MA-So-qVQ" id="D5g-ff-4OV"/>
+                        <outlet property="emptyContainerView" destination="kEb-fb-iiG" id="zZj-hB-pNd"/>
                         <outlet property="peopleListTableView" destination="m6R-b3-EYO" id="52w-JN-ddg"/>
+                        <outlet property="refreshButton" destination="Fob-Th-REr" id="ECi-78-6gd"/>
+                        <outlet property="sadImgView" destination="fGZ-sN-F8M" id="SPH-bD-319"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="75"/>
+            <point key="canvasLocation" x="138.40000000000001" y="74.630541871921181"/>
         </scene>
     </scenes>
     <resources>
+        <image name="sad_emoji" width="480" height="480"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

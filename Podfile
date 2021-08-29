@@ -8,8 +8,8 @@ target 'Scorp_Case' do
   # Pods for Scorp_Case
   pod 'Alamofire'
   pod 'Kingfisher'
-  pod 'IHKeyboardAvoiding'
   pod 'IBAnimatable'
+  pod 'NVActivityIndicatorView'
 
   target 'Scorp_CaseTests' do
     inherit! :search_paths
