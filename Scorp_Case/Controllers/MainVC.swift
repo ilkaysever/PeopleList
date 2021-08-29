@@ -39,38 +39,31 @@ class MainVC: UIViewController {
         refreshButton.tintColor = .white
     }
     
-//    private func setupUI() {
-//        if personData == nil {
-//            peopleListTableView.isHidden = true
-//            emptyContainerView.isHidden = false
-//            refreshButton.isHidden = false
-//        } else {
-//            peopleListTableView.isHidden = false
-//            emptyContainerView.isHidden = true
-//            refreshButton.isHidden = true
-//        }
-//    }
+    private func setListHidden(_ isHidden: Bool) {
+        if isHidden {
+            self.peopleListTableView.isHidden = true
+            self.emptyContainerView.isHidden = false
+            self.refreshButton.isHidden = false
+        } else {
+            self.peopleListTableView.isHidden = false
+            self.emptyContainerView.isHidden = true
+            self.refreshButton.isHidden = true
+        }
+    }
     
     private func getData() {
         DataSource.fetch(next: nextPage) { response, error in
-            if (error != nil) {
-                self.showAlertAction(title: "UUPPSS!!!", message: error?.errorDescription ?? "")
-                print(error?.errorDescription as Any)
-            } else {
-                self.personData = response?.people
-                if self.personData == nil {
-                    self.peopleListTableView.isHidden = true
-                    self.emptyContainerView.isHidden = false
-                    self.refreshButton.isHidden = false
-                } else {
-                    self.peopleListTableView.isHidden = false
-                    self.emptyContainerView.isHidden = true
-                    self.refreshButton.isHidden = true
-                    self.peopleListTableView.reloadData()
+            guard error == nil else {
+                self.showSingleAlertAction(title: "UUPPSS!!!", message: error?.errorDescription ?? "") {
+                    self.getData()
                 }
-                
-                print(self.personData as Any)
+                print(error?.errorDescription as Any)
+                return
             }
+            self.setListHidden(response?.people.count == 0 ? true : false)
+            self.personData = response?.people
+            self.peopleListTableView.reloadData()
+            print(self.personData as Any)
         }
     }
     
@@ -81,30 +74,20 @@ class MainVC: UIViewController {
     
     @IBAction func refreshButtonTapped(_ sender: Any) {
         getData()
-        emptyContainerView.isHidden = true
-        refreshButton.isHidden = true
-        peopleListTableView.isHidden = false
-    }
-    
-    func showAlertAction(title: String, message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
-            self.getData()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        setListHidden(false)
     }
     
     private func setDelegates() {
         peopleListTableView.dataSource = self
         peopleListTableView.delegate = self
         peopleListTableView.register(PeopleListTableViewCell.self)
-        //refreshControl.attributedTitle = NSAttributedString(string: "Yenileniyor")
         refreshControl.addTarget(self, action: #selector(refreshList), for: UIControl.Event.valueChanged)
     }
     
 }
 
 extension MainVC: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personData?.count ?? 0
     }

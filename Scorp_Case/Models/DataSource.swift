@@ -17,7 +17,6 @@ public class Person {
     }
 }
 
-
 public class FetchResponse {
     let people: [Person]
     let next: String?
@@ -28,7 +27,6 @@ public class FetchResponse {
     }
 }
 
-
 public class FetchError {
     let errorDescription: String
     
@@ -38,7 +36,6 @@ public class FetchError {
 }
 
 public typealias FetchCompletionHandler = (FetchResponse?, FetchError?) -> ()
-
 
 public class DataSource {
     
@@ -117,7 +114,6 @@ public class DataSource {
                 response = FetchResponse(people: fetchedPeople, next: responseNext)
             }
         }
-        
         return (response, error, waitTime)
     }
     
@@ -127,7 +123,6 @@ public class DataSource {
 
 fileprivate class RandomUtils {
     
-    
     class func generateRandomInt(inClosedRange range: ClosedRange<Int>) -> Int {
         return Int.random(in: range)
     }
@@ -135,7 +130,6 @@ fileprivate class RandomUtils {
     class func generateRandomInt(inRange range: Range<Int>) -> Int {
         return Int.random(in: range)
     }
-    
     
     class func generateRandomDouble(inClosedRange range: ClosedRange<Double>) -> Double {
         return Double.random(in: range)
