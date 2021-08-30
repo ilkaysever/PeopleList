@@ -39,6 +39,7 @@ class MainVC: UIViewController {
         refreshButton.tintColor = .white
     }
     
+    /// UISetups
     private func setListHidden(_ isHidden: Bool) {
         if isHidden {
             self.peopleListTableView.isHidden = true
@@ -51,6 +52,7 @@ class MainVC: UIViewController {
         }
     }
     
+    /// Get All Datas from DataSource.swift
     private func getData() {
         DataSource.fetch(next: nextPage) { response, error in
             guard error == nil else {
@@ -86,6 +88,7 @@ class MainVC: UIViewController {
     
 }
 
+//MARK: - TableView Datasource & Delegate
 extension MainVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

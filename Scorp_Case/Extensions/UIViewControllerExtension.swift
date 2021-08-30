@@ -9,6 +9,8 @@ import UIKit
 
 extension UIViewController {
     
+    //MARK: - Alert Action
+    /// Single Button Alert Actiton
     func showSingleAlertAction(title: String, message: String, completion: @escaping () -> ()) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
