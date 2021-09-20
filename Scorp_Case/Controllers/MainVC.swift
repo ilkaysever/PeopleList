@@ -17,6 +17,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     
     var nextPage: String?
+    var group = DispatchGroup()
     var personData: [Person]?
     
     let refreshControl = UIRefreshControl()
@@ -28,6 +29,9 @@ class MainVC: UIViewController {
         setDelegates()
         setLayouts()
         getData()
+        group.notify(queue: .main) {
+            self.peopleListTableView.reloadData()
+        }
         
     }
     
@@ -54,15 +58,24 @@ class MainVC: UIViewController {
     
     /// Get All Datas from DataSource.swift
     private func getData() {
+        group.enter()
         DataSource.fetch(next: nextPage) { response, error in
             guard error == nil else {
                 self.showSingleAlertAction(title: "UUPPSS!!!", message: error?.errorDescription ?? "") {
                     self.getData()
+                    self.group.leave()
                 }
                 return
             }
             self.setListHidden(response?.people.count == 0 ? true : false)
-            self.personData = response?.people
+            if self.personData == nil {
+                self.personData = response?.people
+                self.group.leave()
+            } else {
+                guard let personData = self.personData else { return }
+                self.personData?.append(contentsOf: personData)
+                self.group.leave()
+            }
             self.nextPage = response?.next
             self.peopleListTableView.reloadData()
         }
@@ -102,7 +115,6 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //print("********\(indexPath.row)*****" + "*******\(personData?.endIndex)**************")
         if indexPath.row == personData!.endIndex - 1  {
             getData()
         }
