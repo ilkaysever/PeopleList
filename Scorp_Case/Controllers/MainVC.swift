@@ -59,13 +59,12 @@ class MainVC: UIViewController {
                 self.showSingleAlertAction(title: "UUPPSS!!!", message: error?.errorDescription ?? "") {
                     self.getData()
                 }
-                print(error?.errorDescription as Any)
                 return
             }
             self.setListHidden(response?.people.count == 0 ? true : false)
             self.personData = response?.people
+            self.nextPage = response?.next
             self.peopleListTableView.reloadData()
-            print(self.personData as Any)
         }
     }
     
@@ -100,6 +99,13 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
         self.peopleListTableView.addSubview(self.refreshControl)
         cell.fillPerson(personData: self.personData?[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //print("********\(indexPath.row)*****" + "*******\(personData?.endIndex)**************")
+        if indexPath.row == personData!.endIndex - 1  {
+            getData()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
